@@ -1,0 +1,9 @@
+<section style="border:1px solid #ddd; border-radius:12px;padding:1rem">
+    <h2>
+        Today
+    </h2>
+    <div *ngIf="state$ | async as s">
+        <div>Focused: <strong>{{ (s.statsToday.focusedSec / 60) | number:'1.0-0' }}</strong></div>
+        <div>Sessions: <strong>{{ s.statsToday.sessions }}</strong></div>
+    </div>
+</section>

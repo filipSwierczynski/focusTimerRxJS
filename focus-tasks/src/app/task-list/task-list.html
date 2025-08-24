@@ -1,0 +1,19 @@
+<section>
+  <h2>Tasks</h2>
+  <div style="display:flex;gap:.5rem;margin-bottom:.75rem;">
+    <input [formControl]="newTitle" placeholder="Add a task…" (keydown.enter)="add()" style="flex:1;">
+    <button (click)="add()">Add</button>
+  </div>
+
+  <ul *ngIf="tasks$ | async as tasks" style="list-style:none;padding:0;margin:0;display:grid;gap:.5rem;">
+    <li *ngFor="let t of tasks; trackBy: trackById" style="display:flex;align-items:center;gap:.5rem;border:1px solid #eee;border-radius:8px;padding:.5rem .75rem;">
+      <input type="checkbox" [checked]="t.done" (change)="toggle(t.id)">
+      <input [value]="t.title" (change)="rename(t.id, $any($event.target).value)" style="flex:1;border:none;background:transparent;">
+      <button (click)="remove(t.id)" aria-label="delete">✕</button>
+    </li>
+  </ul>
+
+  <div style="margin-top:.75rem;display:flex;gap:.5rem;">
+    <button (click)="clearCompleted()">Clear completed</button>
+  </div>
+</section>
